@@ -96,8 +96,14 @@ header {
   font-size: 14px;
 }
 
+.links a {
+  position: relative;
+  transition: 0.3s;
+}
+
 .links a:hover {
-  color: var(--text);
+  color: #ffffff;
+  text-shadow: 0 0 8px rgba(255,255,255,0.6);
 }
 
 .hero {
