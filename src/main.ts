@@ -51,22 +51,6 @@ if (entry && entryPlay && portfolio) {
   });
 }
 
-
-const beautyCover = document.querySelector<HTMLImageElement>('.beauty-uploaded-cover');
-if (beautyCover) {
-  beautyCover.addEventListener('load', () => {
-    beautyCover.style.display = 'block';
-    const fallback = document.querySelector<HTMLElement>('.beauty-fallback');
-    if (fallback) fallback.style.display = 'none';
-  });
-  beautyCover.src = beautyCover.dataset.src || '';
-}
-const beautyDetail = document.querySelector<HTMLImageElement>('.beauty-detail-image');
-if (beautyDetail) {
-  beautyDetail.addEventListener('load', () => { beautyDetail.style.display = 'block'; });
-  beautyDetail.src = beautyDetail.dataset.src || '';
-}
-
 document.querySelectorAll<HTMLButtonElement>('.case-more').forEach(button => {
   button.addEventListener('click', () => {
     const details = button.nextElementSibling as HTMLElement | null;

@@ -11,7 +11,7 @@ if (carousel && stage && dots && status && grid && dialog?.showModal) {
     const title = (article.querySelector('h3')?.textContent ?? '').replace(/:\s*/u, ': ').trim();
     const category = article.querySelector('.case-tags span')?.textContent ?? title;
     const cover = article.firstElementChild?.querySelector('img');
-    const source = cover?.dataset.src || cover?.getAttribute('src');
+    const source = cover?.getAttribute('src');
     const slide = document.createElement('button');
     slide.type = 'button';
     slide.className = 'case-slide';
@@ -22,6 +22,8 @@ if (carousel && stage && dots && status && grid && dialog?.showModal) {
     if (source) {
       const image = new Image();
       image.alt = '';
+      image.loading = 'lazy';
+      image.decoding = 'async';
       image.src = source;
       image.draggable = false;
       art.append(image);

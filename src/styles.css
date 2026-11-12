@@ -471,41 +471,6 @@ button {
   letter-spacing: 8px;
   font-weight: 800;
 }
-.image-beauty {
-  background: linear-gradient(145deg, #5b4c61, #c8a9ad);
-  color: #fff1e9;
-}
-.beauty-rings {
-  height: 250px;
-  width: 250px;
-  position: absolute;
-  top: 23px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.beauty-rings div {
-  position: absolute;
-  width: 220px;
-  height: 220px;
-  border: 2px solid #ffe6d4a1;
-  border-radius: 50%;
-  transform: rotate(45deg) scaleX(0.62);
-}
-.beauty-rings div:nth-child(2) {
-  transform: rotate(-45deg) scaleX(0.62);
-}
-.beauty-rings > span {  font-size: 110px;
-  letter-spacing: -10px;
-  font-weight: 800;
-}
-.beauty-star {
-  font-size: 30px;
-  vertical-align: top;
-  color: #ffe1b9;
-}
 .image-med {
   background: linear-gradient(125deg, #1b4c5d, #132b3d 55%, #5b99a1);
   color: #d7fafe;
