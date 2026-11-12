@@ -20,3 +20,70 @@ body{background:var(--paper);color:var(--ink);overflow-x:hidden}::selection{back
 @media(max-width:780px){.shell{padding-left:24px;padding-right:24px}.nav{height:75px}.nav-links{display:none}.brand-mark,.brand-mark[style]{font-size:19px!important}.brand-sub{font-size:7px;letter-spacing:1px}.nav-cta{padding:10px 15px}.hero{grid-template-columns:1fr;gap:28px;padding-top:64px;padding-bottom:78px;min-height:auto}.hero h1{font-size:clamp(45px,8vw,62px);letter-spacing:-3.5px}.hero-showcase{max-width:590px;margin:auto;width:100%;gap:22px;padding-bottom:62px}.hero-showcase figure:nth-child(2){transform:translateY(30px) rotate(4deg)}.hero-showcase .hero-stamp{bottom:17px}.numbers-inner{grid-template-columns:repeat(2,1fr)}.numbers-inner>div:nth-child(2){border-right:0}.case-grid{grid-template-columns:1fr 1fr;gap:19px}.case-content{padding:23px}.case h3{font-size:22px}.case-stats{gap:16px}.case-stats strong{font-size:20px}.about-grid{grid-template-columns:1fr}.process-section{padding-top:90px;padding-bottom:90px}}
 @media(max-width:620px){.nav{gap:12px}.brand-sub{display:none}.hero{padding-top:48px;padding-bottom:58px}.eyebrow{font-size:9px;line-height:1.7}.hero h1{font-size:clamp(42px,10.3vw,57px);letter-spacing:-3px;line-height:1.12;margin:23px 0 22px}.hero-description{font-size:13px;line-height:1.85}.hero-actions{margin-top:29px;gap:18px}.btn-primary{padding:16px 17px;gap:18px}.hero-meta{margin-top:38px;gap:16px;flex-wrap:wrap}.hero-showcase{gap:12px;padding:18px 8px 52px}.hero-showcase figure{border-width:4px}.hero-showcase figcaption{font-size:8px;padding:10px 5px}.hero-showcase .hero-stamp{font-size:8px;padding:10px 12px;right:29%;bottom:14px}.hero-showcase .hero-stamp strong{font-size:15px}.numbers-inner{padding-top:27px;padding-bottom:27px;gap:24px}.numbers-inner strong{font-size:27px}.numbers-inner span{font-size:10px}.cases-section{padding-top:80px;padding-bottom:85px}.section-top{margin-bottom:29px;display:block}.section-top h2,.about-grid h2{font-size:38px;letter-spacing:-2.2px}.section-top>p{margin-top:24px}.filters{margin-bottom:24px}.filter{padding:11px 14px;font-size:10px}.case-grid{grid-template-columns:1fr;gap:23px}.case h3{font-size:25px}.case-content{padding:26px}.case-stats strong{font-size:22px}.about-section{padding:77px 0}.about-right>p{font-size:13px}.steps{grid-template-columns:1fr}.steps>div{min-height:0}.contact-section{padding-bottom:53px}.contact-panel{padding:48px 27px}.contact-panel h2{font-size:42px;letter-spacing:-2.2px}.contact-panel>p{font-size:13px}.contact-footer{margin-top:50px}.footer{gap:15px;flex-wrap:wrap}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+}
+
+.hero::before,
+.hero::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+.hero::before {
+  z-index: -1;
+  inset: 0;
+  background:
+    linear-gradient(90deg, #2049f518 1px, transparent 1px),
+    linear-gradient(#2049f518 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(ellipse at 68% 47%, #000 4%, transparent 72%);
+}
+
+.hero::after {
+  z-index: -2;
+  inset: 0 5%;
+  background:
+    radial-gradient(ellipse 38% 47% at 40% 48%, #9dbaff85, transparent 100%),
+    radial-gradient(ellipse 28% 38% at 68% 52%, #c6b9ff55, transparent 100%);
+  animation: hero-light-drift 14s ease-in-out infinite alternate;
+}
+
+.intro-active .hero::after {
+  animation-play-state: paused;
+}
+
+@keyframes hero-light-drift {
+  from {
+    transform: translate(-9%, -5%) scale(.93);
+    opacity: .7;
+  }
+
+  to {
+    transform: translate(11%, 6%) scale(1.08);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 780px) {
+  .hero::before {
+    background-size: 38px 38px;
+    mask-image: radial-gradient(ellipse at 57% 64%, #000 4%, transparent 74%);
+  }
+
+  .hero::after {
+    background:
+      radial-gradient(ellipse 52% 31% at 37% 36%, #9dbaff70, transparent 100%),
+      radial-gradient(ellipse 52% 30% at 67% 65%, #c6b9ff66, transparent 100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::after {
+    animation: none;
+    opacity: .78;
+  }
+}
