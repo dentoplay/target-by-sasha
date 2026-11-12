@@ -2,12 +2,17 @@ import './styles.css';
 
 const entry = document.getElementById('studio-entry');
 const entryPlay = document.getElementById('entry-play') as HTMLButtonElement | null;
-if (entry && entryPlay) {
+const portfolio = document.getElementById('app');
+if (entry && entryPlay && portfolio) {
   document.documentElement.classList.add('intro-active');
+  portfolio.inert = true;
   entryPlay.focus({ preventScroll: true });
+  const hands = entry.querySelectorAll<HTMLElement>('.entry-hand');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   let entered = false;
   const finish = () => {
     entry.hidden = true;
+    portfolio.inert = false;
     document.documentElement.classList.remove('intro-active');
     document.body.classList.add('entry-revealed');
     const mainLink = document.querySelector<HTMLAnchorElement>('.nav a[href="#cases"]');
@@ -17,8 +22,13 @@ if (entry && entryPlay) {
     if (entered) return;
     entered = true;
     entryPlay.disabled = true;
+    if (!reduceMotion.matches) {
+      hands.forEach(hand => {
+        hand.style.setProperty('--contact-start', getComputedStyle(hand).transform);
+      });
+    }
     entry.classList.add('is-opening');
-    window.setTimeout(finish, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 270 : 1300);
+    window.setTimeout(finish, reduceMotion.matches ? 160 : 820);
   });
 }
 
