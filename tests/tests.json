@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Open dentistry case details",
+    "sanity": true,
+    "viewport": "mobile",
+    "covers": [
+      "dental case expansion",
+      "dental metrics",
+      "client testimonial"
+    ],
+    "description": "Shows the updated dentistry results and client testimonial area.",
+    "steps": [
+      "Scroll to dentistry case",
+      "Tap Подробнее о кейсе"
+    ],
+    "expected": "Dentistry case shows 26 conversations, 13,12 ₪ cost, 341,22 ₪ spent and a client review."
+  },
+  {
+    "name": "Open moving case details",
+    "viewport": "desktop",
+    "covers": [
+      "moving case detail",
+      "performance screenshots"
+    ],
+    "description": "Existing moving case still expands.",
+    "steps": [
+      "Go to moving case",
+      "Click Подробнее о кейсе"
+    ],
+    "expected": "Moving case displays explanatory text and proof screenshots."
+  },
+  {
+    "name": "Filter projects",
+    "viewport": "mobile",
+    "covers": [
+      "category filter",
+      "responsive controls"
+    ],
+    "description": "International filter isolates the medical case.",
+    "steps": [
+      "Tap Международные"
+    ],
+    "expected": "Only the international medical project is visible."
+  },
+  {
+    "name": "Collapse case",
+    "viewport": "desktop",
+    "covers": [
+      "case collapse",
+      "accessible expansion state"
+    ],
+    "description": "Expanded details can be hidden.",
+    "steps": [
+      "Expand dentistry case",
+      "Click Свернуть кейс"
+    ],
+    "expected": "Dentistry case details are hidden again."
+  }
+]
