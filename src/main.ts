@@ -7,14 +7,31 @@ if (entry && entryPlay && portfolio) {
   document.documentElement.classList.add('intro-active');
   portfolio.inert = true;
   entryPlay.focus({ preventScroll: true });
-  const hands = entry.querySelectorAll<HTMLElement>('.entry-hand');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const tracking = new AbortController();
+  const pointerOptions = { passive: true, signal: tracking.signal };
   let entered = false;
+
+  entry.addEventListener('pointermove', event => {
+    if (event.pointerType === 'touch' || reduceMotion.matches) return;
+
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    const distance = Math.hypot(event.clientX - width / 2, event.clientY - height / 2);
+    const buttonRadius = 40;
+    const radius = Math.max(buttonRadius + 1, Math.min(440, Math.min(width, height) * .58));
+    const proximity = 1 - Math.min(1, Math.max(0, (distance - buttonRadius) / (radius - buttonRadius)));
+    entry.style.setProperty('--proximity', proximity.toFixed(3));
+  }, pointerOptions);
+
+  entry.addEventListener('pointerleave', () => {
+    entry.style.removeProperty('--proximity');
+  }, pointerOptions);
+
   const finish = () => {
     entry.hidden = true;
     portfolio.inert = false;
     document.documentElement.classList.remove('intro-active');
-    document.body.classList.add('entry-revealed');
     const mainLink = document.querySelector<HTMLAnchorElement>('.nav a[href="#cases"]');
     mainLink?.focus({ preventScroll: true });
   };
@@ -22,13 +39,14 @@ if (entry && entryPlay && portfolio) {
     if (entered) return;
     entered = true;
     entryPlay.disabled = true;
-    if (!reduceMotion.matches) {
-      hands.forEach(hand => {
-        hand.style.setProperty('--contact-start', getComputedStyle(hand).transform);
-      });
-    }
+    tracking.abort();
     entry.classList.add('is-opening');
-    window.setTimeout(finish, reduceMotion.matches ? 160 : 820);
+    const [exitAnimation] = entry.getAnimations();
+    if (exitAnimation) {
+      void exitAnimation.finished.then(finish, finish);
+    } else {
+      finish();
+    }
   });
 }
 
