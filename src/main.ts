@@ -1,4 +1,5 @@
 import './styles.css';
+import './cases';
 
 const entry = document.getElementById('studio-entry');
 const entryPlay = document.getElementById('entry-play') as HTMLButtonElement | null;
@@ -65,21 +66,6 @@ if (beautyDetail) {
   beautyDetail.addEventListener('load', () => { beautyDetail.style.display = 'block'; });
   beautyDetail.src = beautyDetail.dataset.src || '';
 }
-
-const filters = document.querySelectorAll<HTMLButtonElement>('.filter');
-const cases = document.querySelectorAll<HTMLElement>('.case');
-
-filters.forEach(button => {
-  button.addEventListener('click', () => {
-    const selected = button.dataset.filter || 'all';
-    filters.forEach(filter =>
-      filter.classList.toggle('active', filter === button)
-    );
-    cases.forEach(item => {
-      item.hidden = selected !== 'all' && item.dataset.category !== selected;
-    });
-  });
-});
 
 document.querySelectorAll<HTMLButtonElement>('.case-more').forEach(button => {
   button.addEventListener('click', () => {

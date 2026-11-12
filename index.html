@@ -17,6 +17,7 @@
     />
     <link rel="stylesheet" href="./src/styles.css" />
     <link rel="stylesheet" href="./src/redesign.css" />
+    <link rel="stylesheet" href="./src/cases.css" />
     <link rel="stylesheet" href="./src/intro.css" />
   </head>
   <body>
@@ -111,6 +112,20 @@
               Международные
             </button>
           </div>
+          <div class="case-carousel" aria-label="Карусель кейсов" hidden>
+            <div class="case-stage"></div>
+            <div class="case-navigation">
+              <button type="button" class="case-arrow" data-step="-1" aria-label="Предыдущий кейс">←</button>
+              <div class="case-dots" aria-label="Выбор кейса"></div>
+              <button type="button" class="case-arrow" data-step="1" aria-label="Следующий кейс">→</button>
+            </div>
+            <p class="sr-only" aria-live="polite" aria-atomic="true"></p>
+          </div>
+          <dialog class="case-dialog" aria-label="Подробности кейса">
+            <form method="dialog" class="case-dialog-bar">
+              <button type="submit" aria-label="Закрыть кейс" autofocus>×</button>
+            </form>
+          </dialog>
           <div class="case-grid">
             <article class="case featured" data-category="local">
               <div class="moving-case-cover" style="width:100%;background:#eaf3fb">
