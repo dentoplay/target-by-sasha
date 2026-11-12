@@ -87,3 +87,47 @@ body{background:var(--paper);color:var(--ink);overflow-x:hidden}::selection{back
     opacity: .78;
   }
 }
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.contact-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 48px;
+  padding: 10px clamp(14px, 2vw, 20px);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.contact-action--telegram {
+  background: #e4eeff;
+  color: #17428a;
+}
+
+.contact-action--whatsapp {
+  background: #dff8ec;
+  color: #0f573b;
+}
+
+.contact-action:hover {
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.contact-action:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+}
+
+.contact-actions + .contact-footer {
+  margin-top: clamp(30px, 4vw, 54px);
+}
